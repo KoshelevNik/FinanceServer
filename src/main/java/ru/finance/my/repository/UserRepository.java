@@ -34,4 +34,12 @@ public class UserRepository {
   public boolean emailIsNotUnique(String email, Long userId) {
     return userMapper.emailIsNotUnique(email, userId);
   }
+
+  public boolean existByLogin(String login) {
+    return userMapper.existByLogin(login);
+  }
+
+  public boolean loginIsNotUnique(String login, Long userId) {
+    return userMapper.loginIsNotUnique(login, userId);
+  }
 }

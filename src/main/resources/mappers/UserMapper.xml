@@ -52,4 +52,12 @@
   <select id="emailIsNotUnique" resultType="boolean">
     SELECT EXISTS(SELECT 1 FROM public.user u WHERE u.email=#{email} AND u.id=#{userId})
   </select>
+
+  <select id="existByLogin" resultType="boolean">
+    SELECT EXISTS(SELECT 1 FROM public.user u WHERE u.login=#{login})
+  </select>
+
+  <select id="loginIsNotUnique" resultType="boolean">
+    SELECT EXISTS(SELECT 1 FROM public.user u WHERE u.login=#{login} AND u.id=#{userId})
+  </select>
 </mapper>

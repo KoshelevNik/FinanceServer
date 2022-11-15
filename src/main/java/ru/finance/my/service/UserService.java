@@ -102,4 +102,12 @@ public class UserService implements UserDetailsService {
   public boolean emailIsNotUnique(String email, Long userId) {
     return userRepository.emailIsNotUnique(email, userId);
   }
+
+  public boolean existByLogin(String login) {
+    return userRepository.existByLogin(login);
+  }
+
+  public boolean loginIsNotUnique(String login, Long userId) {
+    return userRepository.loginIsNotUnique(login, userId);
+  }
 }

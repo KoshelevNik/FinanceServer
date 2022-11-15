@@ -27,7 +27,10 @@ public class UserController {
   @PutMapping
   public ResponseEntity<User> updateUserByToken(UsernamePasswordAuthenticationToken token, @RequestBody User userDataForUpdate, HttpServletRequest httpServletRequest) {
     User currentUser = (User) token.getPrincipal();
-    if (!userService.emailIsNotUnique(userDataForUpdate.getEmail(), currentUser.getId())) {
+    if (
+        !userService.emailIsNotUnique(userDataForUpdate.getEmail(), currentUser.getId()) &&
+            !userService.loginIsNotUnique(userDataForUpdate.getLogin(), currentUser.getId())
+    ) {
       userDataForUpdate.setId(currentUser.getId());
 
       userService.updateUser(userDataForUpdate, currentUser);

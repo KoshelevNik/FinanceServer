@@ -17,4 +17,8 @@ public interface UserMapper {
   void deleteUserById(Long userId);
 
   boolean emailIsNotUnique(String email, Long userId);
+
+  boolean existByLogin(String login);
+
+  boolean loginIsNotUnique(String login, Long userId);
 }

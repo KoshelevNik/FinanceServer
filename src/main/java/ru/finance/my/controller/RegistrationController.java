@@ -20,7 +20,11 @@ public class RegistrationController {
 
   @PostMapping
   public ResponseEntity<HttpStatus> registration(@RequestBody RegistrationRequestDTO registrationRequestDTO) {
-    if (registrationRequestDTO.getPassword().equals(registrationRequestDTO.getConfirmOfPassword()) && !userService.existByEmail(registrationRequestDTO.getEmail())) {
+    if (
+        registrationRequestDTO.getPassword().equals(registrationRequestDTO.getConfirmOfPassword()) &&
+            !userService.existByEmail(registrationRequestDTO.getEmail()) &&
+            !userService.existByLogin(registrationRequestDTO.getLogin())
+    ) {
       userService.createNew(registrationRequestDTO);
       return ResponseEntity.status(HttpStatus.CREATED).build();
     } else {
